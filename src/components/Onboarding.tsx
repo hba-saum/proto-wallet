@@ -23,6 +23,10 @@ export default function Onboarding({
 
   const mnemonic = generateMnemonic();
 
+  function saveMnemonic(mnemonic: string) {
+    localStorage.setItem("mnemonic", mnemonic);
+  }
+
   const renderContent = () => {
     switch (view) {
       // default view
@@ -86,7 +90,13 @@ export default function Onboarding({
               className="w-full border-gray-200 shadow-sm"
             />
 
-            <Button className="mt-8" onClick={() => onboarding(mnemonic)}>
+            <Button
+              className="mt-8"
+              onClick={() => {
+                saveMnemonic(mnemonic);
+                onboarding(mnemonic);
+              }}
+            >
               Start Creating Wallets <MoveRight className="ml-2 size-4" />
             </Button>
           </motion.div>
@@ -124,9 +134,12 @@ export default function Onboarding({
             <Button
               className="mt-8"
               onClick={() => {
-                validateMnemonic(importedMnemonic)
-                  ? onboarding(importedMnemonic)
-                  : setImportMsg("Invalid Mnemonic. Please try again.");
+                if (validateMnemonic(importedMnemonic)) {
+                  saveMnemonic(importedMnemonic);
+                  onboarding(importedMnemonic);
+                } else {
+                  setImportMsg("Invalid Mnemonic. Please try again.");
+                }
               }}
             >
               Continue <MoveRight className="ml-2 size-4" />

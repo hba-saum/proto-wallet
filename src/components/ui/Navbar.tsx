@@ -11,7 +11,7 @@ export default function Navbar() {
           </span>
           <span className="text-xl font-bold">ProtoWallet</span>
         </div>
-        <Button variant="outline">How to use?</Button>
+        {/* <Button variant="outline">How to use?</Button> */}
       </div>
     </nav>
   );

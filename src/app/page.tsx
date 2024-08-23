@@ -1,14 +1,16 @@
 "use client";
 
 import Onboarding from "@/components/Onboarding";
-import Wallet from "@/components/Wallet";
+import Wallets from "@/components/Wallets";
 import Navbar from "@/components/ui/Navbar";
-import { useState } from "react";
-import { OnboardingData } from "@/lib/types";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [mnemonic, setMnemonic] = useState<string | null>(null);
+  const [mnemonic, setMnemonic] = useState<string>("");
 
+  useEffect(() => {
+    setMnemonic(localStorage.getItem("mnemonic") ?? "");
+  }, [mnemonic]);
   function handleOnboardingData(data: string) {
     setMnemonic(data);
   }
@@ -16,10 +18,10 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      {mnemonic === null ? (
+      {mnemonic === "" ? (
         <Onboarding onboarding={handleOnboardingData} />
       ) : (
-        <Wallet mnemonic={mnemonic} />
+        <Wallets mnemonic={mnemonic} />
       )}
     </main>
   );
