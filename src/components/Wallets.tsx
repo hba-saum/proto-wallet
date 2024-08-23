@@ -177,10 +177,13 @@ export default function Wallets({ mnemonic }: { mnemonic: string }) {
 
           {/* ethereum wallets */}
           <TabsContent value="ethereumTab">
-            <Button variant="link">
+            {/* <Button variant="link">
               <Plus className="mr-2 size-4" />
               Add new Ethereum Wallet
-            </Button>
+            </Button> */}
+            <h2 className="text-center text-5xl font-bold text-gray-600">
+              Coming Soon
+            </h2>
           </TabsContent>
         </Tabs>
       </div>
