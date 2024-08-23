@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default async function SolanaCard({ publicKey }: { publicKey: string }) {
   const getSolanaBalance = async (publicKey: string) => {
-    const url =
-      "https://solana-devnet.g.alchemy.com/v2/gV4-M2_jxFito3NFMB7pKuvq5uil2uG7";
+    const url = process.env.SOL_RPC_URL!;
+
     const body = {
       jsonrpc: "2.0",
       id: 1,
